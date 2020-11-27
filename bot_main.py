@@ -9,12 +9,13 @@ bot = commands.Bot(command_prefix=">")
 
 bot.CHECK_STATUS_FILE = True
 bot.VAR_ACTIVITY_BOT = "var_activity_bot"
-bot.VARS_STRING = "vars"
-bot.ERRORS_STRING = "vars"
+bot.VARS_STRING = "vars_status"
+bot.ERRORS_STRING = "error_history"
 bot.STATUS_CODE_DISCT = None
 bot.MINUTES_TO_WAIT_LOOP = 10
+bot.ERRORS = []
 bot.FILE_PATH = os.path.join(os.getcwd(),"status_code.json")
-
+bot.ERROR_URL_IMG = "https://cdn3.iconfinder.com/data/icons/basicolor-signs-warnings/24/182_warning_notice_error-512.png"
 
 bot.DEFAUL_CHANNEL_ID, token = get_sensible_vars()
 

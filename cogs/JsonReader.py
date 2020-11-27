@@ -14,7 +14,11 @@ class JsonReader(commands.Cog):
     def check_flag(self):
         return self.bot.CHECK_STATUS_FILE
 
+    def change_flag(self):
+        self.bot.CHECK_STATUS_FILE = not self.bot.CHECK_STATUS_FILE
 
+
+    # Loop to load the JSON file and get all the needed information
     @commands.check(check_flag)
     @tasks.loop(seconds = 5)
     async def load_file_status(self):
@@ -30,14 +34,12 @@ class JsonReader(commands.Cog):
 
 
         # Getting errors to track them
-
         errors_collection = list(zip(*self.bot.STATUS_CODE_DISCT[self.bot.ERRORS_STRING]))
 
         if(errors_collection != []):
-            
-            ids_tmp, errors_tmp = list(errors_collection[0]), list(errors_collection[1])
 
-            
+            # If there are new errors, it sends them through an embed to the server
+            ids_tmp, errors_tmp = list(errors_collection[0]), list(errors_collection[1])
             errors = [errors_tmp[len(self.bot.ERRORS)+i] for i in range(max(len(ids_tmp) - len(self.bot.ERRORS),0))]
             if (errors != []):
                 embed = discord.Embed(title = "Errores nuevos en el código:", color = discord.Colour.red())
@@ -50,15 +52,17 @@ class JsonReader(commands.Cog):
         
 
 
+    # Command to stop the loop which reads the JSON file
     @commands.command()
     async def stop_load_file_loop(self, ctx):
+        self.change_flag()
         await ctx.send("Parando loop")
-        self.load_file_status.stop()
 
+    # Command to start the loop which reads the JSON file
     @commands.command()
     async def start_load_file_loop(self, ctx):
+        self.change_flag()
         await ctx.send("Comenzando loop")
-        self.load_file_status.restart()
     
 
 def setup(bot):

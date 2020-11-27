@@ -19,6 +19,9 @@ bot.ERROR_URL_IMG = "https://cdn3.iconfinder.com/data/icons/basicolor-signs-warn
 
 bot.DEFAUL_CHANNEL_ID, token = get_sensible_vars()
 
+
+# This event shows up when the bot is ready to run.
+# When the bot is ready, it import all funcitonalities in cogs folder
 @bot.event
 async def on_ready():
     print("Bot is ready")
@@ -26,22 +29,26 @@ async def on_ready():
         if filename.endswith(".py"):
             bot.load_extension(f'cogs.{filename[:-3]}')
 
+
+# Command to load an extention manually
 @bot.command()
 async def load(ctx, extention="BasicCommands"):
     await ctx.send(f'Cargando {extention}')
     bot.load_extension(f'cogs.{extention}')
 
+
+# Command to load an extention manually
 @bot.command()
 async def unload(ctx, extention="BasicCommands"):
     await ctx.send(f'Retirando {extention}')
     bot.unload_extension(f'cogs.{extention}')
 
+# Command to load an extention manually
 @bot.command()
 async def reload(ctx,extention="BasicCommands"):
     await ctx.send(f'Recargando {extention}')
     bot.unload_extension(f'cogs.{extention}')
     bot.load_extension(f'cogs.{extention}')
-
 
 bot.run(token)
 

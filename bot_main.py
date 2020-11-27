@@ -1,33 +1,43 @@
 
 from discord.ext import commands, tasks
-from sensible_vars import get_sensible_vars
+from cogs.utils.load_status_code import read_setup_file
+
 import discord
 import os
 
 
 bot = commands.Bot(command_prefix=">")
 
-bot.CHECK_STATUS_FILE = True
-bot.VAR_ACTIVITY_BOT = "var_activity_bot"
-bot.VARS_STRING = "vars_status"
-bot.ERRORS_STRING = "error_history"
+
+setup_dict = read_setup_file("setup.json")
+
+
+
+# Sensible vars 
+bot.FILE_PATH = setup_dict["json_file_path"] 
+bot.DEFAUL_CHANNEL_ID = setup_dict["default_channel_id"] 
+token = setup_dict["token"]
+
+# Optional vars
+bot.VAR_ACTIVITY_BOT =setup_dict["var_activity_bot"] 
+bot.VARS_STRING = setup_dict["vars_string"] 
+bot.ERRORS_STRING = setup_dict["errors_string"] 
+bot.ERROR_URL_IMG =  setup_dict["error_url_img"] 
 bot.STATUS_CODE_DISCT = None
 bot.MINUTES_TO_WAIT_LOOP = 10
 bot.ERRORS = []
-bot.FILE_PATH = os.path.join(os.getcwd(),"status_code.json")
-bot.ERROR_URL_IMG = "https://cdn3.iconfinder.com/data/icons/basicolor-signs-warnings/24/182_warning_notice_error-512.png"
 
-bot.DEFAUL_CHANNEL_ID, token = get_sensible_vars()
 
 
 # This event shows up when the bot is ready to run.
 # When the bot is ready, it import all funcitonalities in cogs folder
 @bot.event
 async def on_ready():
-    print("Bot is ready")
+    
     for filename in os.listdir("./cogs"):
         if filename.endswith(".py"):
             bot.load_extension(f'cogs.{filename[:-3]}')
+    print("Bot is ready")
 
 
 # Command to load an extention manually

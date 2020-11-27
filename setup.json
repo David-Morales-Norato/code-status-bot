@@ -1,9 +1,9 @@
 {
    
 
-    "json_file_path" : "Insert your json file path here :D",
-    "default_channel_id": "insert_your_channel_id_here_as_a_str",
-    "token": "Insert your token here",
+    "json_file_path" : "C:\\Users\\NARUTO\\Documents\\Proytectos_personales\\code-status-bot\\status_code.json",
+    "default_channel_id": "781161472041680918",
+    "token": "NzgxMTU4ODAzMzk0NTI3MjMy.X75k0w.ArjWR2ij28H3adlUtPV31vT2Dy0",
 
     "check_status_file": true,
     "var_activity_bot":"var_activity_bot",

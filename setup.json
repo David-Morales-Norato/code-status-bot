@@ -1,0 +1,14 @@
+{
+   
+
+    "json_file_path" : "Insert your json file path here :D",
+    "default_channel_id": "insert_your_channel_id_here_as_a_str",
+    "token": "Insert your token here",
+
+    "check_status_file": true,
+    "var_activity_bot":"var_activity_bot",
+    "vars_string": "vars_status",
+    "errors_string": "error_history",
+    "minutes_to_wait_in_loop": 10,
+    "error_url_img" : "https://cdn3.iconfinder.com/data/icons/basicolor-signs-warnings/24/182_warning_notice_error-512.png"
+}

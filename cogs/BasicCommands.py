@@ -12,7 +12,7 @@ class BasicCommands(commands.Cog):
         
     # Clear the last {amount} msgs in the chat. by default amount is 100
     @commands.command()
-    async def clear(self,ctx,amount = 100 : int):
+    async def clear(self,ctx,amount = 100 ):
         await ctx.channel.purge(limit = amount)
         
 

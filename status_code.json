@@ -1,0 +1,13 @@
+{
+    "vars": {
+        "epochs": 89,
+        "relative_error": -0.6600000000000004,
+        "psnr": 25.31,
+        "loss_function": 1.9400000000000006
+    },
+    "errors": [
+        "File 1.npy doesn't exists",
+        "File 2.npy doesn't exists"
+    ],
+    "var_activity_bot": "epochs"
+}
